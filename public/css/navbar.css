@@ -1,0 +1,26 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+ul{
+    height: 100%;
+}
+
+ul li{
+    height: 100%;
+}
+
+ul li .nav-link{
+    color:white !important;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+ul li .nav-link:hover{
+    color:#f57104 !important;
+}
+
+.active .nav-link{
+    color:#f57104 !important;
+}
