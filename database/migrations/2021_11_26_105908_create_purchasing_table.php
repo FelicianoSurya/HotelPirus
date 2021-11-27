@@ -19,6 +19,7 @@ class CreatePurchasingTable extends Migration
             $table->unsignedBigInteger('inventoryID');
             $table->integer('qtyPurchased');
             $table->integer('price');
+            $table->integer('grand');
             $table->enum('status',['arrived','recieved','cancel','paid'])->default('arrived');
             $table->unsignedBigInteger('createdBy');
             $table->unsignedBigInteger('updatedBy');

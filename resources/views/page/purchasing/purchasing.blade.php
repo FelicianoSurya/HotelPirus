@@ -330,7 +330,7 @@
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-5">
-                                    <input type="text" name="harga" id="harga" class="form-control">
+                                    <input type="text" name="price" id="price" class="form-control">
                                 </div>
                             </div>
                             <div class="row pb-2">
@@ -379,7 +379,7 @@
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" name="price" id="price" class="form-control">
+                                    <input type="text" name="total" id="total" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
@@ -402,6 +402,7 @@
                     <th>Jumlah Beli</th>
                     <th>Harga Beli</th>
                     <th>Supplier</th>
+                    <th>Total Harga</th>
                     <th>Tanggal</th>
                     <th>Status</th>
                     <th>Created By</th>
@@ -415,6 +416,7 @@
                     <td>{{ $data['qtyPurchased'] }}</td>
                     <td>@currency($data['price'])</td>
                     <td>{{ $data['supplier']['supplierName'] }}</td>
+                    <td>@currency($data['grand'])</td>
                     <td>{{ $data['orderDate'] }}</td>
                     <td>{{ $data['status'] }}</td>
                     <td>{{ $data['createdby']->name }}</td>
@@ -441,6 +443,7 @@
                     <th>Jumlah Beli</th>
                     <th>Harga Beli</th>
                     <th>Supplier</th>
+                    <th>Total Harga</th>
                     <th>Tanggal</th>
                     <th>Status</th>
                     <th>Created By</th>
@@ -453,6 +456,7 @@
                     <td>{{ $data['qtyPurchased'] }}</td>
                     <td>@currency($data['price'])</td>
                     <td>{{ $data['supplier']['supplierName'] }}</td>
+                    <td>@currency($data['grand'])</td>
                     <td>{{ $data['orderDate'] }}</td>
                     <td>{{ $data['status'] }}</td>                    
                     <td>{{ $data['createdby']->name }}</td>

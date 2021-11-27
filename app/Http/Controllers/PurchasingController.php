@@ -45,8 +45,9 @@ class PurchasingController extends Controller
             'supplierID' => 'required',
             'inventoryID' => 'required',
             'qtyPurchased' => 'integer|min:0|not_in:0',
-            'price' => 'integer|required',
+            'price' => 'integer|required|min:0|not_in:0',
             'orderDate' => 'required',
+            'grand' => 'integer|required|min:0|not_in:0'
         ]);
 
         if($validate->fails()){
@@ -60,6 +61,7 @@ class PurchasingController extends Controller
             'qtyPurchased' => $request->qtyPurchased,
             'orderDate' => $request->orderDate,
             'price' => $request->price,
+            'grand' => $request->grand,
             'status' => 'arrived',
             'createdBy' => $request->user,
             'updatedBy' => $request->user
@@ -76,7 +78,7 @@ class PurchasingController extends Controller
             'harga' => $request->harga,
             'jumlah' => $detailData->qtyPurchased,
             'supplier' => $detailData->supplier->supplierName,
-            'total' => $detailData->price,
+            'total' => $detailData->grand,
             'tanggal' => $detailData->orderDate,
             'stat' => $detailData->status,
             'editor' => $detailData->updatedby->name,
@@ -107,7 +109,7 @@ class PurchasingController extends Controller
             'harga' => $request->harga,
             'jumlah' => $detailData->qtyPurchased,
             'supplier' => $detailData->supplier->supplierName,
-            'total' => $detailData->price,
+            'total' => $detailData->grand,
             'tanggal' => $detailData->orderDate,
             'stat' => $detailData->status,
             'editor' => $detailData->updatedby->name,
