@@ -15,6 +15,7 @@ class Purchasing extends Model
         'inventoryID',
         'qtyPurchased',
         'price',
+        'grand',
         'status',
         'orderDate',
         'createdBy',

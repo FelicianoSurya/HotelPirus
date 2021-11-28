@@ -61,7 +61,7 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-5">
-                                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value="{{ $supplier['phoneNumber'] }}">
+                                <input type="number" name="phoneNumber" id="phoneNumber" class="form-control" value="{{ $supplier['phoneNumber'] }}">
                             </div>
                         </div>
                         <div class="row">

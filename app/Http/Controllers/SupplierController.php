@@ -33,7 +33,7 @@ class SupplierController extends Controller
 
         if($validate->fails()){
             $request->session()->flash('status','failed');
-            return back();
+            return back()->withErrors($validate);
         }
 
         Supplier::create([

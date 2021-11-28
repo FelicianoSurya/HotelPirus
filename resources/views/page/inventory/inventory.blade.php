@@ -48,7 +48,7 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-2">
-                                <input type="text" name="stock" id="stock" class="form-control">
+                                <input type="number" name="stock" id="stock" class="form-control">
                             </div>
                         </div>
                         <div class="row">

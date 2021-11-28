@@ -50,7 +50,7 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-5">
-                                <input type="text" name="stock" id="stock" class="form-control" value="{{ $inventory['stock'] }}">
+                                <input type="number" name="stock" id="stock" class="form-control" value="{{ $inventory['stock'] }}">
                             </div>
                         </div>
                         <div class="row">

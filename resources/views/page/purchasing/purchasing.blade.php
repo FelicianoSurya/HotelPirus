@@ -149,7 +149,7 @@
     <div class="modal-dialog" style="width:100%;margin-top:50px">	
         <div class="modal-content">
             <div class="modal-header">
-            <h4 class="modal-title" style="display:flex;justify-content:center; width:100%">Pembelian Sudah Dibuat</h4>
+            <h4 class="modal-title" style="display:flex;justify-content:center; width:100%">Notifikasi Pembayaran</h4>
             </div>
             <div class="modal-body">
                 <div class="row pb-2">
@@ -379,7 +379,7 @@
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" name="total" id="total" class="form-control">
+                                    <input type="text" name="grand" id="grand" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
@@ -491,9 +491,9 @@
             var stock = $('#qtyPurchased').val();
             if(stock != ""){
                 var grand = harga * stock;
-                $('#total').val(grand);
+                $('#grand').val(grand);
             }else if(stock == "" || stock == 0){
-                $('#total').val('');
+                $('#grand').val('');
             }
         })
         @if(session('data'))
