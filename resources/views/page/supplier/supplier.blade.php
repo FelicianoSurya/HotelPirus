@@ -13,11 +13,6 @@
                 <h1>Tambah Supplier Baru</h1>
             </div>
             <div class="px-5">
-            @if($errors->any())
-            @foreach($errors->all() as $error)
-                <p> {{ $error }} </p>
-            @endforeach
-            @endif
                 <form action="supplier/add" method="POST">
                     {!! csrf_field() !!}
                     <input type="hidden" name="user" id="user" value="{{ session('user')['id'] }}">
