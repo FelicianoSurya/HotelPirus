@@ -25,7 +25,15 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-7">
-                                <input type="text" name="supplierName" id="supplierName" class="form-control">
+                                @if($errors->any())
+                                    @if($errors->first('supplierName'))
+                                        <input type="text" class="alert alert-danger col-12" name="supplierName" id="supplierName" class="form-control">
+                                    @else
+                                        <input type="text" name="supplierName" id="supplierName" class="form-control" value="{{ session('msg')['supplierName'] }}">
+                                    @endif
+                                @else
+                                    <input type="text" name="supplierName" id="supplierName" class="form-control">
+                                @endif
                             </div>
                         </div>
                         <div class="row pb-2">
@@ -36,7 +44,15 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-7">
-                                <input type="text" name="supplierCode" id="supplierCode" class="form-control">
+                                @if($errors->any())
+                                    @if($errors->first('supplierCode'))
+                                    <input type="text" class="alert alert-danger col-12" name="supplierCode" id="supplierCode" class="form-control">
+                                    @else
+                                    <input type="text" name="supplierCode" id="supplierCode" class="form-control" value="{{ session('msg')['supplierCode'] }}">
+                                    @endif
+                                @else
+                                    <input type="text" name="supplierCode" id="supplierCode" class="form-control">
+                                @endif
                             </div>
                         </div>
                         <div class="row pb-2">
@@ -47,7 +63,15 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-5">
-                                <input type="text" name="address" id="address" class="form-control">
+                                @if($errors->any())
+                                    @if($errors->first('address'))
+                                        <input type="text" class="alert alert-danger col-12" name="address" id="address" class="form-control">
+                                    @else
+                                        <input type="text" name="address" id="address" class="form-control" value="{{ session('msg')['address'] }}">
+                                    @endif
+                                @else
+                                    <input type="text" name="address" id="address" class="form-control">
+                                @endif
                             </div>
                         </div>
                         <div class="row pb-2">
@@ -58,7 +82,15 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-2">
-                                <input type="number" name="phoneNumber" id="phoneNumber" class="form-control">
+                                @if($errors->any())
+                                @if($errors->first('phoneNumber'))
+                                    <input type="number" class="alert alert-danger col-12" name="phoneNumber" id="phoneNumber" class="form-control">
+                                @else
+                                    <input type="number" name="phoneNumber" id="phoneNumber" class="form-control" value="{{ session('msg')['phoneNumber'] }}">
+                                @endif
+                                @else
+                                    <input type="number" name="phoneNumber" id="phoneNumber" class="form-control">
+                                @endif
                             </div>
                         </div>
                         <div class="row">

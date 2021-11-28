@@ -26,7 +26,15 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-7">
-                                <input type="text" name="inventoryName" id="inventoryName" class="form-control">
+                                @if($errors->any())
+                                    @if($errors->first('inventoryName'))
+                                        <input type="text" class="alert alert-danger col-12" name="inventoryName" id="inventoryName" class="form-control">
+                                    @else
+                                        <input type="text" name="inventoryName" id="inventoryName" class="form-control"  value="{{ session('msg')['inventoryName'] }}">
+                                    @endif
+                                @else
+                                    <input type="text" name="inventoryName" id="inventoryName" class="form-control">
+                                @endif
                             </div>
                         </div>
                         <div class="row pb-2">
@@ -37,7 +45,15 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-7">
-                                <input type="text" name="inventoryCode" id="inventoryCode" class="form-control">
+                                @if($errors->any())
+                                    @if($errors->first('inventoryCode'))
+                                        <input type="text" class="alert alert-danger col-12" name="inventoryCode" id="inventoryCode" class="form-control">
+                                    @else
+                                        <input type="text" name="inventoryCode" id="inventoryCode" class="form-control"  value="{{ session('msg')['inventoryCode'] }}">
+                                    @endif
+                                @else
+                                    <input type="text" name="inventoryCode" id="inventoryCode" class="form-control">
+                                @endif
                             </div>
                         </div>
                         <div class="row pb-2">
@@ -48,7 +64,15 @@
                                 <h5>:</h5>
                             </div>
                             <div class="col-2">
-                                <input type="number" name="stock" id="stock" class="form-control">
+                                @if($errors->any())
+                                    @if($errors->first('stock'))
+                                        <input type="text" class="alert alert-danger col-12" name="stock" id="stock" class="form-control">
+                                    @else
+                                        <input type="number" name="stock" id="stock" class="form-control" value="{{ session('msg')['stock'] }}">
+                                    @endif
+                                @else
+                                    <input type="number" name="stock" id="stock" class="form-control">
+                                @endif
                             </div>
                         </div>
                         <div class="row">

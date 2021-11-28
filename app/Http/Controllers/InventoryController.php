@@ -36,7 +36,12 @@ class InventoryController extends Controller
 
         if($validate->fails()){
             $request->session()->flash('status','failed');
-            return back();
+            $request->session()->flash('msg',[
+                'inventoryCode' => $request->inventoryCode,
+                'inventoryName' => $request->inventoryName,
+                'stock' => $request->stock
+            ]);
+            return back()->withErrors($validate);
         }
 
         Inventory::create([

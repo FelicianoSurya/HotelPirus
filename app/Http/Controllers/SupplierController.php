@@ -33,6 +33,12 @@ class SupplierController extends Controller
 
         if($validate->fails()){
             $request->session()->flash('status','failed');
+            $request->session()->flash('msg',[
+                'supplierCode' => $request->supplierCode,
+                'supplierName' => $request->supplierName,
+                'address' => $request->address,
+                'phoneNumber' => $request->phoneNumber,
+            ]);
             return back()->withErrors($validate);
         }
 
