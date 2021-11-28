@@ -487,13 +487,13 @@
             });
         });
         $('#qtyPurchased').keyup(function(){
-            var harga = $('#harga').val();
+            var harga = $('#price').val();
             var stock = $('#qtyPurchased').val();
             if(stock != ""){
-                var price = harga * stock;
-                $('#price').val(price);
+                var grand = harga * stock;
+                $('#total').val(grand);
             }else if(stock == "" || stock == 0){
-                $('#price').val('');
+                $('#total').val('');
             }
         })
         @if(session('data'))
