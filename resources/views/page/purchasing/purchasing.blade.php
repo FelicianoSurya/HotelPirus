@@ -59,7 +59,7 @@
                 </div>
                 <div class="row pb-2">
                     <div class="col-4">
-                        <label class="h7" for="Jumlah">Jumlah Beli</label>
+                        <label class="h7" for="Jumlah">Jumlah</label>
                     </div>
                     <div class="col-1">
                         <h7>:</h7>
@@ -208,7 +208,7 @@
                 </div>
                 <div class="row pb-2">
                     <div class="col-4">
-                        <label class="h7" for="Jumlah">Jumlah Beli</label>
+                        <label class="h7" for="Jumlah">Jumlah</label>
                     </div>
                     <div class="col-1">
                         <h7>:</h7>
@@ -355,7 +355,7 @@
                             </div>
                             <div class="row pb-2">
                                 <div class="col-2">
-                                    <label class="h5" for="jumlah">Jumlah Beli</label>
+                                    <label class="h5" for="jumlah">Jumlah</label>
                                 </div>
                                 <div class="col-1">
                                     <h5>:</h5>
@@ -419,7 +419,7 @@
                 <thead class="thead-dark">
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
-                    <th>Jumlah Beli</th>
+                    <th>Jumlah</th>
                     <th>Harga Beli</th>
                     <th>Supplier</th>
                     <th>Total Harga</th>
@@ -470,7 +470,7 @@
                 <thead class="thead-dark">
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
-                    <th>Jumlah Beli</th>
+                    <th>Jumlah</th>
                     <th>Harga Beli</th>
                     <th>Supplier</th>
                     <th>Total Harga</th>

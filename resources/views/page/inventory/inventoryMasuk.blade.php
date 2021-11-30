@@ -58,7 +58,7 @@
                         </div>
                         <div class="row pb-2">
                             <div class="col-2">
-                                <label class="h5" for="jumlah">Jumlah Beli</label>
+                                <label class="h5" for="jumlah">Jumlah</label>
                             </div>
                             <div class="col-1">
                                 <h5>:</h5>

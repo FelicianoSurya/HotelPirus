@@ -31,7 +31,7 @@ class InventoryController extends Controller
         $validate = Validator::make($request->all(),[
             'inventoryCode' => 'required',
             'inventoryName' => 'required',
-            'stock' => 'integer|min:0|not_in:0'
+            'stock' => 'integer|min:0'
         ]);
 
         if($validate->fails()){
@@ -58,7 +58,7 @@ class InventoryController extends Controller
     
     public function editInventory(Request $request){
         $validate = Validator::make($request->all(),[
-            'stock' => 'required|integer|min:0|not_in:0'
+            'stock' => 'required|integer|min:0'
         ]);
 
         if($validate->fails()){
@@ -120,6 +120,7 @@ class InventoryController extends Controller
 
         $purchasing = Purchasing::find($id);
         $inventoryCode = $request->inventoryCode;
+        $price = $purchasing->price;
 
         $inventory = Inventory::where('inventoryCode' , $inventoryCode)->first();
         $stock = $inventory->stock;
@@ -128,6 +129,7 @@ class InventoryController extends Controller
             $purchasing->fill([
                 'qtyPurchased' => $request->qtyPurchased,
                 'updatedBy' => $request->user,
+                'grand' => $price * $request->qtyPurchased,
                 'status' => 'recieved'
             ]);
 
