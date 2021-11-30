@@ -146,7 +146,16 @@
                     $('#supplierID').val(result.supplier);
                     $('#qtyPurchased').val(result.jumlah);
                     $('#orderDate').val(result.tanggal);
-                    $('#status').val(result.status);
+                    if(result.status == 'arrived'){
+                        var statusNote = 'dikirim';
+                    }else if(result.status == 'recieved'){
+                        var statusNote = 'diterima';
+                    }else if(result.status == 'paid'){
+                        var statusNote = 'terbayar';
+                    }else{
+                        var statusNote = 'dibatalkan';
+                    }
+                    $('#status').val(statusNote);
                     $('#editor').text(result.editor);
                 }
             });

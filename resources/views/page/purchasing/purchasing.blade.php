@@ -109,7 +109,17 @@
                         <h7>:</h7>
                     </div>
                     <div class="col-4">
-                        <h7 id="model-status">{{ session('data')['stat'] }}</h7>
+                        <h7 id="model-status">
+                        @if(session('data')['stat'] == 'arrived')
+                            dikirim
+                        @elseif(session('data')['stat'] == 'paid')
+                            terbayar
+                        @elseif(session('data')['stat'] == 'recieved')
+                            diterima
+                        @elseif(session('data')['stat'] == 'cancel')
+                            dibatalkan
+                        @endif  
+                        </h7>
                     </div>
                 </div>
                 <div class="row pb-2">
@@ -248,7 +258,17 @@
                         <h7>:</h7>
                     </div>
                     <div class="col-4">
-                        <h7 id="model-status">{{ session('paid')['stat'] }}</h7>
+                        <h7 id="model-status">
+                        @if(session('paid')['stat'] == 'arrived')
+                            dikirim
+                        @elseif(session('paid')['stat'] == 'paid')
+                            terbayar
+                        @elseif(session('paid')['stat'] == 'recieved')
+                            diterima
+                        @elseif(session('paid')['stat'] == 'cancel')
+                            dibatalkan
+                        @endif    
+                        </h7>
                     </div>
                 </div>
                 <div class="row pb-2">
@@ -392,7 +412,7 @@
                 </div>
             </div>
             <hr>
-            <div class="p-4 text-center">S
+            <div class="p-4 text-center">
                 <h1>Bayar Pembelian</h1>
             </div>
             <table id="table" class="table table-bordered">
@@ -418,7 +438,17 @@
                     <td>{{ $data['supplier']['supplierName'] }}</td>
                     <td>@currency($data['grand'])</td>
                     <td>{{ $data['orderDate'] }}</td>
-                    <td>{{ $data['status'] }}</td>
+                    <td>
+                        @if($data['status'] == 'arrived')
+                            dikirim
+                        @elseif($data['status'] == 'paid')
+                            terbayar
+                        @elseif($data['status'] == 'recieved')
+                            diterima
+                        @elseif($data['status'] == 'cancel')
+                            dibatalkan
+                        @endif
+                    </td>
                     <td>{{ $data['createdby']->name }}</td>
                     <td>{{ $data['updatedby']->name }}</td>
                     
@@ -458,7 +488,17 @@
                     <td>{{ $data['supplier']['supplierName'] }}</td>
                     <td>@currency($data['grand'])</td>
                     <td>{{ $data['orderDate'] }}</td>
-                    <td>{{ $data['status'] }}</td>                    
+                    <td>
+                    @if($data['status'] == 'arrived')
+                         dikirim
+                    @elseif($data['status'] == 'paid')
+                        terbayar
+                    @elseif($data['status'] == 'recieved')
+                        diterima
+                    @elseif($data['status'] == 'cancel')
+                        dibatalkan
+                    @endif
+                    </td>                    
                     <td>{{ $data['createdby']->name }}</td>
                     <td>{{ $data['updatedby']->name }}</td>
                 </tr>
