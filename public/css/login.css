@@ -1,0 +1,26 @@
+.topik{
+    color:white;
+    font-size:20px;
+    margin:0;
+    font-weight:bold;
+}
+
+.modal-header{
+    border:none;
+}
+
+.modal-content{
+    background-color: #85260f;
+    color:white;
+}
+
+.btn{
+    min-width:20vh;
+    background-color: #FFB13E;
+    color:white;
+    border:none;
+}
+
+.btn:hover{
+    background-color: #ff9900;
+}
