@@ -48,6 +48,17 @@
                 </div>
                 <div class="row pb-2">
                     <div class="col-4">
+                        <label class="h7" for="kategori">Kategori Barang</label>
+                    </div>
+                    <div class="col-1">
+                        <h7>:</h7>
+                    </div>
+                    <div class="col-4">
+                        <h7 id="model-kategori">{{ session('data')['kategori'] }}</h7>
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-4">
                         <label class="h7" for="harga">Harga Beli</label>
                     </div>
                     <div class="col-1">
@@ -193,6 +204,18 @@
                     </div>
                     <div class="col-4">
                         <h7 id="model-kodeBarang">{{ session('paid')['kodeBarang'] }}</h7>
+                    </div>
+                </div>
+                
+                <div class="row pb-2">
+                    <div class="col-4">
+                        <label class="h7" for="kategori">Kategori Barang</label>
+                    </div>
+                    <div class="col-1">
+                        <h7>:</h7>
+                    </div>
+                    <div class="col-4">
+                        <h7 id="model-kategori">{{ session('paid')['kategori'] }}</h7>
                     </div>
                 </div>
                 <div class="row pb-2">
@@ -344,6 +367,17 @@
                             </div>
                             <div class="row pb-2">
                                 <div class="col-2">
+                                    <label class="h5" for="kategoro">Kategori Barang</label>
+                                </div>
+                                <div class="col-1">
+                                    <h5>:</h5>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" id="kategori" disabled class="form-control">
+                                </div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-2">
                                     <label class="h5" for="harga">Harga Beli</label>
                                 </div>
                                 <div class="col-1">
@@ -417,7 +451,9 @@
             </div>
             <table id="table" class="table table-bordered">
                 <thead class="thead-dark">
+                    <th>Kode Transaksi</th>
                     <th>Kode Barang</th>
+                    <th>Kategori Barang</th>
                     <th>Nama Barang</th>
                     <th>Jumlah</th>
                     <th>Harga Beli</th>
@@ -431,7 +467,9 @@
                 </thead>
                 @foreach($purchasings as $data)
                 <tr>
+                    <td>{{ $data['id'] }}</td>
                     <td>{{ $data['inventory']['inventoryCode'] }}</td>
+                    <td>{{ $data['inventory']['Kategori']['categoryName'] }}</td>
                     <td>{{ $data['inventory']['inventoryName'] }}</td>
                     <td>{{ $data['qtyPurchased'] }}</td>
                     <td>@currency($data['price'])</td>
@@ -468,7 +506,9 @@
             </div>
             <table id="table1" class="table table-bordered">
                 <thead class="thead-dark">
+                    <th>Kode Transaksi</th>
                     <th>Kode Barang</th>
+                    <th>Kategori Barang</th>
                     <th>Nama Barang</th>
                     <th>Jumlah</th>
                     <th>Harga Beli</th>
@@ -481,7 +521,9 @@
                 </thead>
                 @foreach($histories as $data)
                 <tr>
+                    <td>{{ $data['id'] }}</td>
                     <td>{{ $data['inventory']['inventoryCode'] }}</td>
+                    <td>{{ $data['inventory']['Kategori']['categoryName'] }}</td>
                     <td>{{ $data['inventory']['inventoryName'] }}</td>
                     <td>{{ $data['qtyPurchased'] }}</td>
                     <td>@currency($data['price'])</td>
@@ -523,6 +565,7 @@
                 },
                 success : function(result){
                     $('#kodeBarang').val(result.inventoryCode);
+                    $('#kategori').val(result.categoryName);
                 }
             });
         });

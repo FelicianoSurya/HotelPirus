@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\PurchasingController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,13 @@ Route::post('inventory/edit/action' , [InventoryController::class, 'editInventor
 Route::get('inventory/masuk', [InventoryController::class, 'viewPemasukan'])->name('viewPemasukan');
 Route::get('inventory/getPemasukan/{transaksi_id}', [InventoryController::class, 'getDetailTransaksi']);
 Route::post('inventory/purchasing/terima', [InventoryController::class, 'processTerima']);
+Route::get('getCategory/{get_id}',[InventoryController::class, 'getCategory'])->name('getCategory');
+Route::get('inventory/edit/getCategory/{get_id}',[InventoryController::class, 'getCategoryDetail'])->name('getCategoryDetail');
+
+Route::get('category',[CategoryController::class, 'view'])->name('kategori');
+Route::post('category/addCategory',[CategoryController::class, 'addCategory']);
+Route::get('category/edit/{category_id}' , [CategoryController::class, 'editView'])->name('editCategory');
+Route::post('category/edit/action' , [CategoryController::class, 'editCategory']);
 
 Route::get('purchasing',[PurchasingController::class, 'viewIndex'])->name('purchasing');
 Route::get('getInventory/{get_id}',[PurchasingController::class, 'getInventory'])->name('getInventory');

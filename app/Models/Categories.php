@@ -4,19 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Categories;
 
-class Inventory extends Model
+class Categories extends Model
 {
     use HasFactory;
-    
-    protected $table = 'inventory';
+
+    protected $table = 'categories';
     protected $fillable = [
-        'inventoryCode',
-        'inventoryName',
-        'categoryID',
-        'stock',
+        'categoryCode',
+        'categoryName',
         'createdBy',
         'updatedBy'
     ];
@@ -28,10 +24,4 @@ class Inventory extends Model
     public function updatedBy(){
         return $this->belongsTo(User::class , 'updatedBy' , 'id');
     }
-
-    public function Kategori(){
-        return $this->belongsTo(Categories::class, 'categoryID','id');
-    }
-
-
 }

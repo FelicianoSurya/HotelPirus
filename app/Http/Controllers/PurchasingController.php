@@ -17,7 +17,7 @@ class PurchasingController extends Controller
             return "Rp. <?php echo number_format($expression,0,',','.'); ?>";
         });
         $suppliers = Supplier::all();
-        $inventories = Inventory::all();
+        $inventories = Inventory::with(['Kategori'])->get();
         $params = Purchasing::with(['createdBy','updatedBy','supplier','inventory'])->where('status' , 'recieved')
                     ->get();
         $histories = Purchasing::with(['createdBy','updatedBy','supplier','inventory'])->where('status' , 'cancel')->orWhere('status','paid')
@@ -32,9 +32,10 @@ class PurchasingController extends Controller
     
     public function getInventory($id){
 
-        $params = Inventory::where('id',$id)->first();
+        $params = Inventory::with(['Kategori'])->where('id',$id)->first();
         $data = [
-            'inventoryCode' => $params['inventoryCode']
+            'inventoryCode' => $params['inventoryCode'],
+            'categoryName' => $params['Kategori']->categoryName
         ];
 
         return response()->json($data);
@@ -75,6 +76,7 @@ class PurchasingController extends Controller
             'id' => $detailData->id,
             'namaBarang' => $detailData->inventory->inventoryName,
             'kodeBarang' => $detailData->inventory->inventoryCode,
+            'kategori' => $detailData->inventory->Kategori->categoryName,
             'harga' => $request->price,
             'jumlah' => $detailData->qtyPurchased,
             'supplier' => $detailData->supplier->supplierName,
@@ -106,6 +108,7 @@ class PurchasingController extends Controller
             'id' => $detailData->id,
             'namaBarang' => $detailData->inventory->inventoryName,
             'kodeBarang' => $detailData->inventory->inventoryCode,
+            'kategori' => $detailData->inventory->Kategori->categoryName,
             'harga' => $detailData->price,
             'jumlah' => $detailData->qtyPurchased,
             'supplier' => $detailData->supplier->supplierName,

@@ -17,6 +17,7 @@
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <input type="hidden" name="id" id="id" value="{{ $inventory['id'] }}">
+                        <input type="hidden" name="catID" id="catID" value="{{ $inventory['Kategori']->id }}">
                         <input type="hidden" name="user" id="user" value="{{ session('user')['id'] }}">
                         <div class="row pb-2 d-flex align-items-center">
                             <div class="col-2">
@@ -40,6 +41,22 @@
                             <div class="col-7">
                                 <h3>{{ $inventory['inventoryCode'] }}</h3>
                                 <input type="hidden" name="inventoryCode" id="inventoryCode" class="form-control" value="{{ $inventory['inventoryCode'] }}">
+                            </div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-2">
+                                <label class="h5" for="namaKategori">Kategori Barang</label>
+                            </div>
+                            <div class="col-1">
+                                <h5>:</h5>
+                            </div>
+                            <div class="col-7">
+                                <select class="form-control" name="categoryID" id="categoryID">
+                                    <option value="">Nama Kategori</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category['id'] }}">{{ $category['categoryName'] }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="row pb-2 d-flex align-items-center">
@@ -70,6 +87,17 @@
 @section('custom-js')
 <script>
     $(document).ready(function() {
+        var id = $('#catID').val();
+        $.ajax({
+            url : "getCategory/" + id,
+            method : "GET",
+            data : {
+                id : id,
+            },
+            success : function(result){
+                $('#categoryID').val(result.categoryID).change();
+            }
+        });
         @if(session('status') == 'success')
         $(document).ready(function() {
                 Swal.fire({

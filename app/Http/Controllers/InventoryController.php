@@ -7,6 +7,7 @@ Use Illuminate\Support\Facades\Validator;
 use App\Models\Inventory;
 use App\Models\Supplier;
 use App\Models\Purchasing;
+use App\Models\Categories;
 
 use Illuminate\Http\Response;
 
@@ -14,22 +15,27 @@ class InventoryController extends Controller
 {
     public function viewIndex(){
         $params = Inventory::with(['createdBy','updatedBy'])->get();
+        $categories = Categories::all();
         return view('page/inventory/inventory',[
             'inventories' => $params,
+            'categories' => $categories
         ]);
     }
 
     public function editView($id){
         $inventory = Inventory::find($id);
+        $categories = Categories::all();
 
         return view('page/inventory/editInventory',[
-            'inventory' => $inventory
+            'inventory' => $inventory,
+            'categories' => $categories
         ]);
     }
 
     public function addInventory(Request $request){
         $validate = Validator::make($request->all(),[
             'inventoryCode' => 'required',
+            'categoryID' => 'required',
             'inventoryName' => 'required',
             'stock' => 'integer|min:0'
         ]);
@@ -38,6 +44,7 @@ class InventoryController extends Controller
             $request->session()->flash('status','failed');
             $request->session()->flash('msg',[
                 'inventoryCode' => $request->inventoryCode,
+                'categoryID' => $request->categoryID,
                 'inventoryName' => $request->inventoryName,
                 'stock' => $request->stock
             ]);
@@ -46,6 +53,7 @@ class InventoryController extends Controller
 
         Inventory::create([
             'inventoryCode' => $request->inventoryCode,
+            'categoryID' => $request->categoryID,
             'inventoryName' => $request->inventoryName,
             'stock' => $request->stock,
             'createdBy' => $request->user,
@@ -58,6 +66,7 @@ class InventoryController extends Controller
     
     public function editInventory(Request $request){
         $validate = Validator::make($request->all(),[
+            'categoryID' => 'required',
             'stock' => 'required|integer|min:0'
         ]);
 
@@ -71,6 +80,7 @@ class InventoryController extends Controller
         $inventory = Inventory::find($id);
 
         $inventory->fill([
+            'categoryID' => $request->categoryID,
             'stock' => $request->stock,
             'updatedBy' => $request->user
         ]);
@@ -95,6 +105,7 @@ class InventoryController extends Controller
         $data = [
             'namaBarang' => $params->inventory->inventoryName,
             'kodeBarang' => $params->inventory->inventoryCode,
+            'kategori' => $params->inventory->Kategori->categoryName,
             'supplier' => $params->supplier->supplierName,
             'tanggal' => $params->orderDate,
             'jumlah' => $params->qtyPurchased,
@@ -154,4 +165,23 @@ class InventoryController extends Controller
         return back();
     }
 
+    public function getCategory($id){
+
+        $params = Categories::where('id',$id)->first();
+        $data = [
+            'categoryCode' => $params['categoryCode']
+        ];
+
+        return response()->json($data);
+    }
+
+    public function getCategoryDetail($id){
+
+        $params = Categories::where('id',$id)->first();
+        $data = [
+            'categoryID' => $params['id']
+        ];
+
+        return response()->json($data);
+    }
 }

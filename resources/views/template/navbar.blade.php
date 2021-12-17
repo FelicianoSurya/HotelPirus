@@ -15,6 +15,9 @@
                     <li class="nav-item nav-item-right px-2 my-0 d-flex align-items-center {{ Request::segment(1) === 'supplier' ? 'active' : '' }}">
                         <a id="supplier" class="nav-link m-0 h5" href="{{ route('supplier') }}">Supplier</a>
                     </li>
+                    <li class="nav-item nav-item-right px-2 my-0 d-flex align-items-center {{ Request::segment(1) === 'supplier' ? 'active' : '' }}">
+                        <a id="supplier" class="nav-link m-0 h5" href="{{ route('kategori') }}">Kode Kategori</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right d-flex align-items-center p-0 pr-3">
                     <li class="nav-item not-active nav-item-right mx-2 my-0 h5 px-2 my-0 d-flex align-items-center">{{ session('user')['name'] }}</li>

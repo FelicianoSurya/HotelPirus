@@ -58,6 +58,17 @@
                         </div>
                         <div class="row pb-2">
                             <div class="col-2">
+                                <label class="h5" for="kategori">Kategori Barang</label>
+                            </div>
+                            <div class="col-1">
+                                <h5>:</h5>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" id="kategori" disabled class="form-control">
+                            </div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-2">
                                 <label class="h5" for="jumlah">Jumlah</label>
                             </div>
                             <div class="col-1">
@@ -143,6 +154,7 @@
                     $("#namaBarang").val(result.namaBarang);
                     $('#kodeBarang').val(result.kodeBarang);
                     $('#inventoryCode').val(result.kodeBarang);
+                    $('#kategori').val(result.kategori);
                     $('#supplierID').val(result.supplier);
                     $('#qtyPurchased').val(result.jumlah);
                     $('#orderDate').val(result.tanggal);

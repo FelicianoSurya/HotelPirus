@@ -39,6 +39,33 @@
                         </div>
                         <div class="row pb-2">
                             <div class="col-2">
+                                <label class="h5" for="kodekategori">Kode Kategori</label>
+                            </div>
+                            <div class="col-1">
+                                <h5>:</h5>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" id="kodekategori" disabled class="form-control">
+                            </div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-2">
+                                <label class="h5" for="namaKategori">Kategori Barang</label>
+                            </div>
+                            <div class="col-1">
+                                <h5>:</h5>
+                            </div>
+                            <div class="col-7">
+                                <select class="form-control" name="categoryID" id="categoryID">
+                                    <option value="">Nama Kategori</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category['id'] }}">{{ $category['categoryName'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-2">
                                 <label class="h5" for="kodeBarang">Kode Barang</label>
                             </div>
                             <div class="col-1">
@@ -95,6 +122,7 @@
             <table id="table" class="table table-bordered">
                 <thead class="thead-dark">
                     <th>Kode Barang</th>
+                    <th>Kategori Barang</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Stok</th>
                     <th>Created By</th>
@@ -104,6 +132,7 @@
                 @foreach($inventories as $inventory)
                 <tr>
                     <td>{{ $inventory['inventoryName'] }}</td>
+                    <td class="text-center">{{ $inventory['kategori']->categoryName }}</td>
                     <td>{{ $inventory['inventoryCode'] }}</td>
                     <td>{{ $inventory['stock'] }}</td>
                     <td>{{ $inventory['createdby']->name }}</td>
@@ -124,6 +153,19 @@
 @section('custom-js')
 <script>
     $(document).ready(function() {
+        $('#categoryID').change(function(){
+            var id = $(this).val();
+            $.ajax({
+                url : "getCategory/" + id,
+                method : "GET",
+                data : {
+                    id : id,
+                },
+                success : function(result){
+                    $('#kodekategori').val(result.categoryID);
+                }
+            });
+        });
         @if(session('status') == 'success')
         $(document).ready(function() {
                 Swal.fire({
