@@ -13,7 +13,7 @@
                 <h1>Edit Supplier</h1>
             </div>
             <div class="px-5">
-                <form action="/supplier/edit/action" method="POST">
+                <form action="action" method="POST">
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <input type="hidden" name="id" id="id" value="{{ $supplier['id'] }}">

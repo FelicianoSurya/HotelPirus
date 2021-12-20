@@ -113,7 +113,7 @@
                     <th>No. Telp Supplier</th>
                     <th>Created By</th>
                     <th>Last Edited</th>
-                    <!-- <th>Aksi</th> -->
+                    <th>Aksi</th>
                 </thead>
                 @foreach($suppliers as $supplier)
                 <tr>
@@ -123,10 +123,10 @@
                     <td>{{ $supplier['phoneNumber'] }}</td>
                     <td>{{ $supplier['createdby']->name }}</td>
                     <td>{{ $supplier['updatedby']->name }}</td>
-                    <!-- <td>
+                    <td>
                         <a href="{{ url('supplier/edit/' . $supplier['id']) }}"><button class="btn btn-sm btn-primary">Edit</button></a>
-                        <a onclick="return confirm('Hapus Supplier Yang Dipilih?')" href="{{ url('supplier/delete/' . $supplier['id']) }}"><button class="btn btn-sm btn-danger">Delete</button></a>
-                    </td> -->
+                        <!-- <a onclick="return confirm('Hapus Supplier Yang Dipilih?')" href="{{ url('supplier/delete/' . $supplier['id']) }}"><button class="btn btn-sm btn-danger">Delete</button></a> -->
+                    </td>
                 </tr>
                 @endforeach
             </table>

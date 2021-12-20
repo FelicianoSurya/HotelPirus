@@ -131,9 +131,9 @@
                 </thead>
                 @foreach($inventories as $inventory)
                 <tr>
-                    <td>{{ $inventory['inventoryName'] }}</td>
-                    <td class="text-center">{{ $inventory['kategori']->categoryName }}</td>
                     <td>{{ $inventory['inventoryCode'] }}</td>
+                    <td class="text-center">{{ $inventory['kategori']->categoryName }}</td>
+                    <td>{{ $inventory['inventoryName'] }}</td>
                     <td>{{ $inventory['stock'] }}</td>
                     <td>{{ $inventory['createdby']->name }}</td>
                     <td>{{ $inventory['updatedby']->name }}</td>
@@ -162,7 +162,7 @@
                     id : id,
                 },
                 success : function(result){
-                    $('#kodekategori').val(result.categoryID);
+                    $('#kodekategori').val(result.categoryCode);
                 }
             });
         });

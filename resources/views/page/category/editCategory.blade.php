@@ -13,7 +13,7 @@
                 <h1>Edit Kategori</h1>
             </div>
             <div class="px-5">
-                <form action="/category/edit/action" method="POST">
+                <form action="action" method="POST">
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <input type="hidden" name="id" id="id" value="{{ $category['id'] }}">
