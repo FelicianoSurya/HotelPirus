@@ -7,6 +7,8 @@
 
 @section('content')
 
+<body onload="inputFunction1()">
+</body>
 <div class="container body pt-5">
     <div class="row">
         <div class="col-12">
@@ -19,8 +21,8 @@
                     <input type="hidden" name="user" id="user" value="{{ session('user')['id'] }}">
                     <div class="form-group">
                         <div class="row pb-2">
-                            <div class="col-2">
-                                <label class="h5" for="namaKategori">Nama Kategori</label>
+                            <div class="col-3">
+                                <label class="h5" for="namaKategori">Nama Kategori <span class="require-star" id="namakategori">*</span></label>
                             </div>
                             <div class="col-1">
                                 <h5>:</h5>
@@ -28,31 +30,31 @@
                             <div class="col-7">
                                 @if($errors->any())
                                     @if($errors->first('CategoryName'))
-                                        <input type="text" class="alert alert-danger col-12" name="categoryName" id="categoryName" class="form-control">
+                                        <input type="text" class="alert alert-danger col-12" name="categoryName" onkeyup="inputFunction('categoryName','namakategori')" id="categoryName" class="form-control">
                                     @else
-                                        <input type="text" name="categoryName" id="categoryName" class="form-control"  value="{{ session('msg')['categoryName'] }}">
+                                        <input type="text" name="categoryName" onkeyup="inputFunction('categoryName','namakategori')" id="categoryName" class="form-control"  value="{{ session('msg')['categoryName'] }}">
                                     @endif
                                 @else
-                                    <input type="text" name="categoryName" id="categoryName" class="form-control">
+                                    <input type="text" name="categoryName" onkeyup="inputFunction('categoryName','namakategori')" id="categoryName" class="form-control">
                                 @endif
                             </div>
                         </div>
                         <div class="row pb-2">
-                            <div class="col-2">
-                                <label class="h5" for="categoryCode">Kode Kategori</label>
+                            <div class="col-3">
+                                <label class="h5" for="categoryCode">Kode Kategori <span class="require-star" id="kodekategori">*</span></label>
                             </div>
                             <div class="col-1">
                                 <h5>:</h5>
                             </div>
-                            <div class="col-7">
+                            <div class="col-7" >
                                 @if($errors->any())
                                     @if($errors->first('categoryCode'))
-                                        <input type="text" class="alert alert-danger col-12" name="categoryCode" id="categoryCode" class="form-control">
+                                        <input type="text" class="alert alert-danger col-12" name="categoryCode" onkeyup="inputFunction('categoryCode','kodekategori')" id="categoryCode" class="form-control">
                                     @else
-                                        <input type="text" name="categoryCode" id="categoryCode" class="form-control"  value="{{ session('msg')['categoryCode'] }}">
+                                        <input type="text" name="categoryCode" onkeyup="inputFunction('categoryCode','kodekategori')" id="categoryCode" class="form-control"  value="{{ session('msg')['categoryCode'] }}">
                                     @endif
                                 @else
-                                    <input type="text" name="categoryCode" id="categoryCode" class="form-control">
+                                    <input type="text" name="categoryCode" onkeyup="inputFunction('categoryCode','kodekategori')" id="categoryCode" class="form-control">
                                 @endif
                             </div>
                         </div>
@@ -97,6 +99,29 @@
 
 @section('custom-js')
 <script>
+    function inputFunction(a,title){
+        var value = document.getElementById(a).value;
+        console.log(value)
+        if(value != ''){
+            document.getElementById(title).style.display = 'none';
+        }else if(value == ''){
+            document.getElementById(title).style.display = 'inline';
+        }
+    }
+    function inputFunction1(){
+        var nama = document.getElementById('categoryName').value;
+        var kode = document.getElementById('categoryCode').value;
+        if(nama != ''){
+            document.getElementById('namakategori').style.display = 'none';
+        }else if(nama == ''){
+            document.getElementById('namakategori').style.display = 'inline';
+        }
+        if(kode != ''){
+            document.getElementById('kodekategori').style.display = 'none';
+        }else if(kode == ''){
+            document.getElementById('kodekategori').style.display = 'inline';
+        }
+    }
     $(document).ready(function() {
         @if(session('status') == 'success')
         $(document).ready(function() {

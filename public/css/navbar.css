@@ -53,3 +53,7 @@ nav .not-active:hover{
     color:white !important;
     background-color:#eb7558 !important;
 }
+
+.require-star{
+    color:red;
+}

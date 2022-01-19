@@ -340,13 +340,13 @@
                         <div class="form-group">
                             <div class="row pb-2">
                                 <div class="col-2">
-                                    <label class="h5" for="namaBarang">Nama Barang</label>
+                                    <label class="h5" for="namaBarang">Nama Barang <span class="require-star" id="namabarang">*</span></label>
                                 </div>
                                 <div class="col-1">
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-7">
-                                    <select class="form-control" name="inventoryID" id="inventoryID">
+                                    <select class="form-control" name="inventoryID" id="inventoryID" onchange="inputFunction('inventoryID','namabarang')">
                                         <option value="">Nama Barang</option>
                                         @foreach($inventories as $inventory)
                                         <option value="{{ $inventory['id'] }}">{{ $inventory['inventoryName'] }}</option>
@@ -378,35 +378,35 @@
                             </div>
                             <div class="row pb-2">
                                 <div class="col-2">
-                                    <label class="h5" for="harga">Harga Beli</label>
+                                    <label class="h5" for="harga">Harga Beli <span class="require-star" id="harga">*</span></label>
                                 </div>
                                 <div class="col-1">
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-5">
-                                    <input type="text" name="price" id="price" class="form-control">
+                                    <input type="text" name="price" id="price" onkeyup="inputFunction('price','harga')" class="form-control">
                                 </div>
                             </div>
                             <div class="row pb-2">
                                 <div class="col-2">
-                                    <label class="h5" for="jumlah">Jumlah</label>
+                                    <label class="h5" for="jumlah">Jumlah <span class="require-star" id="jumlah">*</span></label>
                                 </div>
                                 <div class="col-1">
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-2">
-                                    <input type="text" name="qtyPurchased" id="qtyPurchased" class="form-control">
+                                    <input type="text" name="qtyPurchased" onkeyup="inputFunction('qtyPurchased','jumlah')" id="qtyPurchased" class="form-control">
                                 </div>
                             </div>
                             <div class="row pb-2">
                                 <div class="col-2">
-                                    <label class="h5" for="supplier">Supplier</label>
+                                    <label class="h5" for="supplier">Supplier <span class="require-star" id="suppliernama">*</span></label>
                                 </div>
                                 <div class="col-1">
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-4">
-                                    <select name="supplierID" id="supplierID" class="form-control">
+                                    <select name="supplierID" id="supplierID" class="form-control" onchange="inputFunction('supplierID','suppliernama')">
                                         <option value="1">Nama Supplier</option>
                                         @foreach($suppliers as $supplier)
                                         <option value="{{ $supplier['id'] }}">{{ $supplier['supplierName'] }}</option>
@@ -416,13 +416,13 @@
                             </div>
                             <div class="row pb-2">
                                 <div class="col-2">
-                                    <label class="h5" for="tanggal">Tanggal</label>
+                                    <label class="h5" for="tanggal">Tanggal <span class="require-star" id="tanggal">*</span></label>
                                 </div>
                                 <div class="col-1">
                                     <h5>:</h5>
                                 </div>
                                 <div class="col-4">
-                                    <input type="date" name="orderDate" id="orderDate" class="form-control">
+                                    <input type="date" name="orderDate" id="orderDate" class="form-control" onkeyup="inputFunction('orderDate','tanggal')" onchange="inputFunction('orderDate','tanggal')">
                                 </div>
                             </div>
                             <div class="row pb-2">
@@ -554,6 +554,15 @@
 
 @section('custom-js')
 <script>
+    function inputFunction(a,title){
+        var value = document.getElementById(a).value;
+        console.log(value)
+        if(value != ''){
+            document.getElementById(title).style.display = 'none';
+        }else if(value == ''){
+            document.getElementById(title).style.display = 'inline';
+        }
+    }
     $(document).ready(function() {
         $('#inventoryID').change(function(){
             var id = $(this).val();

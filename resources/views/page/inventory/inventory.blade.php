@@ -7,6 +7,9 @@
 
 @section('content')
 
+<body onload="inputFunction1()">
+
+</body>
 <div class="container body pt-5">
     <div class="row">
         <div class="col-12">
@@ -19,8 +22,8 @@
                     <input type="hidden" name="user" id="user" value="{{ session('user')['id'] }}">
                     <div class="form-group">
                         <div class="row pb-2">
-                            <div class="col-2">
-                                <label class="h5" for="namaBarang">Nama Barang</label>
+                            <div class="col-3">
+                                <label class="h5" for="namaBarang">Nama Barang <span class="require-star" id="namabarang">*</span></label>
                             </div>
                             <div class="col-1">
                                 <h5>:</h5>
@@ -28,17 +31,17 @@
                             <div class="col-7">
                                 @if($errors->any())
                                     @if($errors->first('inventoryName'))
-                                        <input type="text" class="alert alert-danger col-12" name="inventoryName" id="inventoryName" class="form-control">
+                                        <input type="text" class="alert alert-danger col-12" name="inventoryName" onkeyup="inputFunction('inventoryName','namabarang')" id="inventoryName" class="form-control">
                                     @else
-                                        <input type="text" name="inventoryName" id="inventoryName" class="form-control"  value="{{ session('msg')['inventoryName'] }}">
+                                        <input type="text" name="inventoryName" onkeyup="inputFunction('inventoryName','namabarang')" id="inventoryName" class="form-control"  value="{{ session('msg')['inventoryName'] }}">
                                     @endif
                                 @else
-                                    <input type="text" name="inventoryName" id="inventoryName" class="form-control">
+                                    <input type="text" name="inventoryName" onkeyup="inputFunction('inventoryName','namabarang')" id="inventoryName" class="form-control">
                                 @endif
                             </div>
                         </div>
                         <div class="row pb-2">
-                            <div class="col-2">
+                            <div class="col-3">
                                 <label class="h5" for="kodekategori">Kode Kategori</label>
                             </div>
                             <div class="col-1">
@@ -49,14 +52,14 @@
                             </div>
                         </div>
                         <div class="row pb-2">
-                            <div class="col-2">
-                                <label class="h5" for="namaKategori">Kategori Barang</label>
+                            <div class="col-3">
+                                <label class="h5" for="namaKategori">Kategori Barang <span class="require-star" id="kategoribarang">*</span></label>
                             </div>
                             <div class="col-1">
                                 <h5>:</h5>
                             </div>
                             <div class="col-7">
-                                <select class="form-control" name="categoryID" id="categoryID">
+                                <select class="form-control" name="categoryID" id="categoryID" onchange="inputFunction('categoryID','kategoribarang')">
                                     <option value="">Nama Kategori</option>
                                     @foreach($categories as $category)
                                     <option value="{{ $category['id'] }}">{{ $category['categoryName'] }}</option>
@@ -65,8 +68,8 @@
                             </div>
                         </div>
                         <div class="row pb-2">
-                            <div class="col-2">
-                                <label class="h5" for="kodeBarang">Kode Barang</label>
+                            <div class="col-3">
+                                <label class="h5" for="kodeBarang">Kode Barang <span class="require-star" id="kodebarang">*</span></label>
                             </div>
                             <div class="col-1">
                                 <h5>:</h5>
@@ -74,18 +77,18 @@
                             <div class="col-7">
                                 @if($errors->any())
                                     @if($errors->first('inventoryCode'))
-                                        <input type="text" class="alert alert-danger col-12" name="inventoryCode" id="inventoryCode" class="form-control">
+                                        <input type="text" class="alert alert-danger col-12" name="inventoryCode" onkeyup="inputFunction('inventoryCode','kodebarang')" id="inventoryCode" class="form-control">
                                     @else
-                                        <input type="text" name="inventoryCode" id="inventoryCode" class="form-control"  value="{{ session('msg')['inventoryCode'] }}">
+                                        <input type="text" name="inventoryCode" onkeyup="inputFunction('inventoryCode','kodebarang')" id="inventoryCode" class="form-control"  value="{{ session('msg')['inventoryCode'] }}">
                                     @endif
                                 @else
-                                    <input type="text" name="inventoryCode" id="inventoryCode" class="form-control">
+                                    <input type="text" name="inventoryCode" onkeyup="inputFunction('inventoryCode','kodebarang')" id="inventoryCode" class="form-control">
                                 @endif
                             </div>
                         </div>
                         <div class="row pb-2">
-                            <div class="col-2">
-                                <label class="h5" for="stok">Jumlah Stok</label>
+                            <div class="col-3">
+                                <label class="h5" for="stok">Jumlah Stok <span class="require-star" id="jumlahstok">*</span></label>
                             </div>
                             <div class="col-1">
                                 <h5>:</h5>
@@ -93,12 +96,12 @@
                             <div class="col-2">
                                 @if($errors->any())
                                     @if($errors->first('stock'))
-                                        <input type="text" class="alert alert-danger col-12" name="stock" id="stock" class="form-control">
+                                        <input type="text" class="alert alert-danger col-12" name="stock" onkeyup="inputFunction('stock','jumlahstok')" id="stock" class="form-control">
                                     @else
-                                        <input type="number" name="stock" id="stock" class="form-control" value="{{ session('msg')['stock'] }}">
+                                        <input type="number" name="stock" onkeyup="inputFunction('stock','jumlahstok')" id="stock" class="form-control" value="{{ session('msg')['stock'] }}">
                                     @endif
                                 @else
-                                    <input type="number" name="stock" id="stock" class="form-control">
+                                    <input type="number" name="stock" onkeyup="inputFunction('stock','jumlahstok')" id="stock" class="form-control">
                                 @endif
                             </div>
                         </div>
@@ -152,6 +155,41 @@
 
 @section('custom-js')
 <script>
+    function inputFunction(a,title){
+        var value = document.getElementById(a).value;
+        console.log(value)
+        if(value != ''){
+            document.getElementById(title).style.display = 'none';
+        }else if(value == ''){
+            document.getElementById(title).style.display = 'inline';
+        }
+    }
+    function inputFunction1(){
+        var nama = document.getElementById('inventoryName').value;
+        var kategori = document.getElementById('categoryID').value;
+        var kode = document.getElementById('inventoryCode').value;
+        var stock = document.getElementById('stock').value;
+        if(nama != ''){
+            document.getElementById('namabarang').style.display = 'none';
+        }else if(nama == ''){
+            document.getElementById('namabarang').style.display = 'inline';
+        }
+        if(kategori != ''){
+            document.getElementById('kategoribarang').style.display = 'none';
+        }else if(kategori == ''){
+            document.getElementById('kategoribarang').style.display = 'inline';
+        }
+        if(kode != ''){
+            document.getElementById('kodebarang').style.display = 'none';
+        }else if(kode == ''){
+            document.getElementById('kodebarang').style.display = 'inline';
+        }
+        if(stock != ''){
+            document.getElementById('jumlahstok').style.display = 'none';
+        }else if(stock == ''){
+            document.getElementById('jumlahstok').style.display = 'inline';
+        }
+    }
     $(document).ready(function() {
         $('#categoryID').change(function(){
             var id = $(this).val();
